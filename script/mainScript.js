@@ -8,9 +8,9 @@ function queryFunc() {
     // Adds user's query with timestamp to the conversation
     const userTimestamp = new Date().toLocaleString();
     conversation.push({ type: 'Query', content: user_input, timestamp: userTimestamp });
-
-    fetch("http://advanced-deep-learning-406018.appspot.com?query=" + encodeURIComponent(user_input), {
-        method: "GET",
+    // http://advanced-deep-learning-406018.appspot.com
+    // http://127.0.0.1:5000
+    fetch("http://advanced-deep-learning-406018.appspot.com?query=" + encodeURIComponent(user_input), {method: "GET",
     })
     .then(response => response.text())
     .then(data => {
