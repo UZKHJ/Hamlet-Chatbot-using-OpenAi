@@ -75,6 +75,20 @@ txt = loader.load()
 docs = split_documents(txt)
 # print("Splitted documents:", len(docs))
 
+
+###################Transcribing the above docs to single file for requirement###########
+# # Initializes an empty string 
+# merged_doc = ""
+
+# # Concatenates the content of all documents
+# for doc in docs:
+#     merged_doc += doc.page_content
+
+# # Saves the merged docs to a single text file
+# with open("Hamlet_Transcribed.txt", "w", encoding="utf-8") as file:
+#     file.write(merged_doc)
+
+
 # Trains and Runs the Model
 def run_model(user_input):
     embeddings = SentenceTransformerEmbeddings(model_name='all-MiniLM-L6-v2')
