@@ -10,7 +10,7 @@ function queryFunc() {
     conversation.push({ type: 'Query', content: user_input, timestamp: userTimestamp });
     // http://advanced-deep-learning-406018.appspot.com
     // http://127.0.0.1:5000
-    fetch("http://advanced-deep-learning-406018.appspot.com?query=" + encodeURIComponent(user_input), {method: "GET",
+    fetch("http://127.0.0.1:5000?query=" + encodeURIComponent(user_input), {method: "GET",
     })
     .then(response => response.text())
     .then(data => {

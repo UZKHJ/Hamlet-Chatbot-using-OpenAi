@@ -1,5 +1,6 @@
 runtime: python311
 entrypoint: gunicorn -b :$PORT app:app
+instance_class: F4_1G
 
 handlers:
 - url: /static

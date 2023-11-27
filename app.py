@@ -23,34 +23,34 @@ from google.cloud import secretmanager
 app = flask.Flask(__name__)
 cors = CORS(app)
 
-
+################### FOR CLOUD Only################
 # API from GCLOUD SECRET MANAGER
-def access_secret_version(secret_id, version_id="latest"):
-    # Create the Secret Manager client.
-    client = secretmanager.SecretManagerServiceClient()
+# def access_secret_version(secret_id, version_id="latest"):
+#     # Create the Secret Manager client.
+#     client = secretmanager.SecretManagerServiceClient()
 
-    # Build the resource name of the secret version.
-    name = f"projects/advanced-deep-learning-406018/secrets/{secret_id}/versions/{version_id}"
+#     # Build the resource name of the secret version.
+#     name = f"projects/advanced-deep-learning-406018/secrets/{secret_id}/versions/{version_id}"
 
-    # Access the secret version.
-    response = client.access_secret_version(name=name)
+#     # Access the secret version.
+#     response = client.access_secret_version(name=name)
 
-    # Return the decoded payload.
-    return response.payload.data.decode('UTF-8')
+#     # Return the decoded payload.
+#     return response.payload.data.decode('UTF-8')
 
-OPENAI_API_KEY=access_secret_version("OPENAI_API_KEY")
-if OPENAI_API_KEY:
-    print("API Key loaded successfully")
-else:
-    print("API Key not found or invalid.")
+# OPENAI_API_KEY=access_secret_version("OPENAI_API_KEY")
+# if OPENAI_API_KEY:
+#     print("API Key loaded successfully")
+# else:
+#     print("API Key not found or invalid.")
 
-######################################################
+########################FOR LOCAL TESTING##############################
 # FOR LOCAL WORKFLOW 
 # Loads the environment variables from .env file
-# load_dotenv()
+load_dotenv()
 
 # Accesses the API key using the environment variable
-# OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 ######################################################
 
 # Splitting the document
@@ -61,7 +61,10 @@ def split_documents(documents, chunk_size=150, chunk_overlap=20):
 
 # Defining the OpenAi model to use
 model_name="gpt-3.5-turbo-1106"
-llm = ChatOpenAI(model_name=model_name, openai_api_key=OPENAI_API_KEY)
+###################### FOR CLOUD API KEY ONLY##########################
+# llm = ChatOpenAI(model_name=model_name, openai_api_key=OPENAI_API_KEY)
+######################## FOR LOCAL KEY##################################
+llm = ChatOpenAI(model_name=model_name)
 # result = llm.predict("Hello! What is your name?")
 # print(result) 
 
